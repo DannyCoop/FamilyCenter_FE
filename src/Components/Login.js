@@ -1,4 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
+import {Route, Switch, Link} from 'react-router-dom'
+import Home from '../containers/Home'
+
 
 class Login extends Component{
 
@@ -29,16 +32,25 @@ class Login extends Component{
 
     render(){
         return(
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={(e) => this.handleSubmit(e)}>
-            <label>Name</label>
-            <input onChange={(e) => this.handleChange(e)} name="name" type="text"  />
-            <label>Password</label>
-            <input onChange={(e) => this.handleChange(e)} name="password" type="password" />
-            <input type="submit"/>
-            </form>
-        </div>
+            <Fragment>
+                <div>
+                    <h2>Login</h2>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <label>Name</label>
+                    <input onChange={(e) => this.handleChange(e)} name="name" type="text"  />
+                    <label>Password</label>
+                    <input onChange={(e) => this.handleChange(e)} name="password" type="password" />
+                    <Link to="/home">
+                        <input type="submit"/>
+                    </Link>
+                    </form>
+                </div>
+
+                {/* <Switch> */}
+                    <Route path="/home" exact component={Home}></Route>
+                {/* </Switch> */}
+
+            </Fragment>
         )
     }
 }
