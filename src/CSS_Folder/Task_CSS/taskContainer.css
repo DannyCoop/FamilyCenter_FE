@@ -1,7 +1,8 @@
 .TaskContainer{
-    padding: 10rem;
+    /* padding: 10rem; */
     border-style: solid;
     border-color: red;
-    position: absolute;
-    margin-top: 15%;
+    /* position: absolute; */
+    /* margin-top: 15%; */
+    text-align: center;
 }

@@ -9,7 +9,9 @@ const Home = () => {
     return(
         <div>
             <NavBar /> 
+            <br></br>
             <TaskList /> 
+            <br></br>
             <Calendar />
         </div>
         

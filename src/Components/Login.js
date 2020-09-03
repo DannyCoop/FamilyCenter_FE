@@ -8,13 +8,15 @@ import {connect} from 'react-redux'
 
 const Login = (props) => {
 
+    console.log(props)
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
 
-    const useEffect = (() => {
-        props.dispatch(fetchUsers())
-    });
+    // useEffect(() => {
+        
+    // });
+
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -40,6 +42,10 @@ const Login = (props) => {
         .then(res => res.json())
         .then(data => {
         localStorage.setItem("token", data.token)
+        localStorage.userCat = data.user.category
+        localStorage.familyId = data.user.family_id
+        localStorage.name = data.user.name
+        // props.dispatch(fetchUsers())
         history.push("/Home")
         })
     }

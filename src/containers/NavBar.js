@@ -5,24 +5,28 @@ import {Route, Link} from 'react-router-dom'
 import Home from './Home'
 import {myfam} from '../Actions/myfam'
 import {connect} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+
 
 const NavBar = (props) => {
     // const users = useSelector(state => state.fetchUsers);
     // const dispatch = useDispatch()
-    const handleClick = () =>  {
-        props.dispatch(myfam())
-    }
+
+    const history = useHistory();
 
     return(
         <Fragment>
             <div>
-            <button className="login-btn">Login</button>
-            <button onClick={() => console.log("this is my family")}>My Family</button>
-            <button onClick={() => localStorage.clear()}>Logout</button>
-            <p></p>
-        </div>
+                {!localStorage.token ? history.push("/Login") : history.push("/Home")}
+            <Link to="/MyFamily">
+                <button>My Family</button>
+            </Link>
+            <Link to="/Login">
+                <button onClick={() => localStorage.clear()}>Logout</button>
+            </Link>
+            </div>
         </Fragment>
-        
+
     )
     
 }
