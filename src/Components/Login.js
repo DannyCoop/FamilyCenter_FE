@@ -4,11 +4,12 @@ import Home from '../containers/Home'
 import {useHistory} from 'react-router-dom'
 import {fetchUsers} from '../Actions/fetchUser'
 import {connect} from 'react-redux'
+import Signup from './Signup'
 
 
 const Login = (props) => {
 
-    console.log(props)
+
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
@@ -45,7 +46,7 @@ const Login = (props) => {
         localStorage.userCat = data.user.category
         localStorage.familyId = data.user.family_id
         localStorage.name = data.user.name
-        // props.dispatch(fetchUsers())
+        props.dispatch(fetchUsers())
         history.push("/Home")
         })
     }
@@ -61,6 +62,7 @@ const Login = (props) => {
                 <input onChange={(e) => handlePasswordChange(e)} name="password" type="password" />
                 <input type="submit"/>
                 </form>
+                <p>Don't have a account?<Link to="/Signup">Signup Now</Link></p>
             </div>
 
             <Switch>

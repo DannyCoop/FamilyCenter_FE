@@ -26,6 +26,7 @@ function App(props) {
         <Route path='/Home' exact component={Home}></Route>
         <Route path='/MyFamily' exact component={family_container}></Route>
         <Route path='/Login' exact component={Login}></Route>
+        <Route path='/Signup' exact component={Signup}></Route>
       </Switch>
       </div>
 

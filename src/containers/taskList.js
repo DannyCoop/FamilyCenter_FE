@@ -10,7 +10,7 @@ const TaskList = () => {
     const currentUser = family.users.filter(user => user.name === localStorage.name)
 
     const showTask = () => {
-        console.log(currentUser)
+        // console.log(currentUser)
         return currentUser.map(user => <Task 
             user = {user} />)
     }

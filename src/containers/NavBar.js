@@ -3,7 +3,6 @@ import addToArray from '../Actions'
 import { useSelector, useDispatch} from 'react-redux'
 import {Route, Link} from 'react-router-dom'
 import Home from './Home'
-import {myfam} from '../Actions/myfam'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
