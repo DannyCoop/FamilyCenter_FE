@@ -1,4 +1,4 @@
-import React, {Component,useState} from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import { connect } from 'react-redux';
 
@@ -9,6 +9,7 @@ const Signup = (props) => {
     const [category, setCategory] = useState("");
     // const [points, setPoints] = useState("")
     const [family_id, setFamily_id] = useState("");
+    const [visible, setVisible] = useState(false)
     const history = useHistory();
     let parentCheck = false;
 
@@ -21,8 +22,9 @@ const Signup = (props) => {
     const handleCategoryChange = (e) => {
         setCategory(e.target.value)
         if(e.target.value === "Parent"){
-            parentCheck = true
-            console.log(parentCheck)
+            setVisible(!visible)
+        }else{
+            setVisible(!visible)
         }
     }
     // const handlePointsChange = (e) => {
@@ -57,17 +59,17 @@ const Signup = (props) => {
         })
     }
 
-    const parentFrom = () => {
-        if(parentCheck === true){
-            return(
-            <div>
-                <label>Family Name</label>
-                <br/>
-                <input name="family_name" type="text"/>
-            </div>
-            )
-        }
-    }
+    // const parentFrom = () => {
+    //     if(parentCheck === true){
+    //         return(
+    //         <div>
+    //             <label>Family Name</label>
+    //             <br/>
+    //             <input name="family_name" type="text"/>
+    //         </div>
+    //         )
+    //     }
+    // }
 
     return(
     <div>
@@ -83,8 +85,11 @@ const Signup = (props) => {
             <option value="Child">Child</option>
             <option value="Parent">Parent</option>
         </select>
-        <br/>
-        {parentCheck === true ? <div><label>Family Name</label><br/><input name="family_name" type="text"/></div> : null}
+        {visible && <div className="family-form" >
+            <label>Family Name</label>
+            <br/>
+            <input name="family_name" type="text"/>
+        </div> }
         {/* <label>Starting Points</label>
         <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
         <label>FamilyId</label>

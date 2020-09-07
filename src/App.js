@@ -9,6 +9,7 @@ import Welcome from './Components/Welcome'
 import family_container from './containers/family_container';
 import {fetchUsers} from './Actions/fetchUser'
 import {connect} from 'react-redux'
+import 'semantic-ui-css/semantic.min.css'
 
 
 

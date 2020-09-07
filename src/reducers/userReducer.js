@@ -5,7 +5,7 @@ let userReducer = (state= initialState, action) => {
         case 'ADD_USERS':
             return  {...state, users: action.familyOnly}
         case 'UPDATE_TASK':
-            return {...state, users:[...state.users.filter(user => user.id != action.user.id), action.user]} 
+            return {...state, users:[...state.users.filter(user => user.id !== action.user.id), action.user]} 
         default:
             return state
     }

@@ -1,3 +1,6 @@
-.task{
+.task li{
     text-align: left;
+}
+.task button{
+    text-align: center;
 }

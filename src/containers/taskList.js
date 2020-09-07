@@ -14,9 +14,12 @@ const TaskList = () => {
         return currentUser.map(user => <Task 
             user = {user} />)
     }
+
+
     return(
         <div className="TaskContainer">
             {showTask()}
+
         </div>
     )
 }
