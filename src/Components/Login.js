@@ -42,6 +42,7 @@ const Login = (props) => {
         })
         .then(res => res.json())
         .then(data => {
+        // make and if statement or something to you can check if the user is logged in before setting uo locakstorage and moving to the next page
         localStorage.setItem("token", data.token)
         localStorage.userCat = data.user.category
         localStorage.familyId = data.user.family_id

@@ -3,13 +3,14 @@ import task from '.././CSS_Folder/Task_CSS/task.css'
 import taskUpdate from '../Actions/taskUpdate'
 import FamilyFormModal from './FamilyFormModal'
 import { connect, useSelector } from 'react-redux';
-import { Modal, Button, Form } from 'semantic-ui-react'
+import { Modal, Button, Form, Segment } from 'semantic-ui-react'
 
 const Task = (props) => {
 
     //How I get the user array
     const family = useSelector(state => state.users)
-    const currentUser = family.users.filter(user => user.name === localStorage.name)
+    const currentUser = useSelector(state => state.users.currentUser)
+    
     //modal toggles
     const [on, setOn] = useState(false);
     const [tradeModal,setTradeModal] = useState(false)
@@ -146,7 +147,7 @@ const Task = (props) => {
     const taskList = () => {
         if(localStorage.userCat.toLowerCase() !== "parent"){
             if(props.user.tasks.length > 0)
-                return props.user.tasks.map(task => <li>{task.name} Points: {task.points} <Button onClick={() => completeTask(task.points, task)}>Complete</Button> {tradeTask(task)}</li>)
+                return props.user.tasks.map(task => <Segment>{task.name} Points: {task.points} <Button onClick={() => completeTask(task.points, task)}>Complete</Button> {tradeTask(task)}</Segment>)
             else{
                 return <li>You have no task.</li>
             }
