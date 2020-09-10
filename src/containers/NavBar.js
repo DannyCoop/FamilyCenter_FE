@@ -106,7 +106,7 @@ const NavBar = (props) => {
         <Menu className="navBar" pointing secondary>
             {/* {!localStorage.token ? history.push("/Login") : history.push("/Home")} */}
                 <Menu.Item
-                    name="Home"
+                    name="Family Center"
                     active={activeItem === 'Home'}
                     onClick={(e) => handleItemClick(e, "Home")}
 

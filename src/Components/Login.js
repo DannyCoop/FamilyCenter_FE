@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import Signup from './Signup'
 import { Button, Segment, Form } from 'semantic-ui-react'
 import '../CSS_Folder/LoginPage.css'
+import FamilyCenterLogo from '../images/FamilyCenterLogo.png'
 
 
 const Login = (props) => {
@@ -72,8 +73,9 @@ const Login = (props) => {
 
     return(
         <div className="Login-page">
+                <img className="logo" src={FamilyCenterLogo}/> 
             <Segment className ="login-form">
-                <h2>Login</h2><br/>
+                <h2 style={{textAlign: "center"}}>Login</h2><br/>
                 <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Field>
                         <label>Name</label>
