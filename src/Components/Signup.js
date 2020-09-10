@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import { connect, useSelector } from 'react-redux';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Segment } from 'semantic-ui-react';
+import '../CSS_Folder/SignupPage.css'
+import FamilyCenterLogo from '../images/FamilyCenterLogo.png'
 
 const Signup = (props) => {
 
@@ -95,39 +97,43 @@ const Signup = (props) => {
     }
 
     return(
-    <div>
-        <h2>Signup</h2>
-        <Form onSubmit={(e) => handleSubmit(e)}><br/>
-            <Form.Field>
-                <label>Name</label>
-                <input onChange={(e) => handleNameChange(e)} name="name" type="text"  /><br/>
-            </Form.Field>
-            <Form.Field>
-                <label>Password</label>
-                <input onChange={(e) => handlePasswordChange(e)} name="password" type="password" /><br/>
-            </Form.Field>
+        <div className="Sign-page">
+            <img className="logo" src={FamilyCenterLogo}/>
+            <Segment >
+                <h2 style={{textAlign: "center"}}>SignUp</h2>
+                <Form onSubmit={(e) => handleSubmit(e)}><br/>
+                    <Form.Field>
+                        <label>Name</label>
+                        <input onChange={(e) => handleNameChange(e)} name="name" type="text"  /><br/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input onChange={(e) => handlePasswordChange(e)} name="password" type="password" /><br/>
+                    </Form.Field>
 
-            <Form.Field onChange={(e) => handleCategoryChange(e)} name="category" control='select' label="Category">
-                <option value="Select">Select</option>
-                <option value="Child">Child</option>
-                <option value="Parent">Parent</option>
-            </Form.Field >
-            {visible && <div className="family-form" >
-                <label>Family Name</label>
-                <br/>
-                <input onChange={(e) => handleNewFamily(e)} name="family_name" type="text"/>
-            </div> }<br/>
-            {/* <label>Starting Points</label>
-            <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
-            <label>FamilyId</label>
-            <Form.Field onChange={(e) => handleFamily_idChange(e)} name="family_id" type="text" control='select' >
-                <option value="select">Select</option>
-                {showFamilyOptions()}
-            </Form.Field>
-            <br/>
-            <Button type="submit">Submit</Button>
-        </Form>
-    </div>
+                    <Form.Field onChange={(e) => handleCategoryChange(e)} name="category" control='select' label="Category">
+                        <option value="Select">Select</option>
+                        <option value="Child">Child</option>
+                        <option value="Parent">Parent</option>
+                    </Form.Field >
+                    {visible && <div className="family-form" >
+                        <label>Family Name</label>
+                        <br/>
+                        <input onChange={(e) => handleNewFamily(e)} name="family_name" type="text"/>
+                    </div> }<br/>
+                    {/* <label>Starting Points</label>
+                    <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
+                    <label>FamilyId</label>
+                    <Form.Field onChange={(e) => handleFamily_idChange(e)} name="family_id" type="text" control='select' >
+                        <option value="select">Select</option>
+                        {showFamilyOptions()}
+                    </Form.Field>
+                    <br/>
+                    <Button type="submit">Submit</Button>
+                    <Link to="/Login">Back to login</Link>
+                </Form>
+            </Segment>
+        </div>
     )
 }
 

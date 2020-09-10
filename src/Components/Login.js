@@ -75,7 +75,7 @@ const Login = (props) => {
         <div className="Login-page">
                 <img className="logo" src={FamilyCenterLogo}/> 
             <Segment className ="login-form">
-                <h2 style={{textAlign: "center"}}>Login</h2><br/>
+                <h2 style={{textAlign: "center"}}>Login</h2>
                 <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Field>
                         <label>Name</label>
