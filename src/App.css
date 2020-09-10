@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-style: solid;
-  border-color: blue;
   /* margin: auto; */
   width: 100%;
   min-height: 100vh;
@@ -30,12 +28,12 @@ height: 95vh;
 }
 
 .calendar-container{
-  width: 70vw;
+  width: 90vw;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  border-color: blue;
-  border-style: solid;
+  margin-left: 1rem;
+
 } 
 

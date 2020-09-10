@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 
 const Signup = (props) => {
@@ -12,6 +12,8 @@ const Signup = (props) => {
     const [family_id, setFamily_id] = useState("");
     const [visible, setVisible] = useState(false)
     const history = useHistory();
+    const familyOptions = useSelector(state => state.users.families)
+
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -24,7 +26,7 @@ const Signup = (props) => {
         if(e.target.value === "Parent"){
             setVisible(!visible)
         }else{
-            setVisible(!visible)
+            setVisible(false)
         }
     }
     // const handlePointsChange = (e) => {
@@ -71,6 +73,27 @@ const Signup = (props) => {
     //     }
     // }
 
+    const showFamilyOptions = () => {
+        return familyOptions.map(family => <option value={family.id}>{family.family_name}</option>)
+    }
+    console.log(familyOptions)
+    
+    const handleNewFamily = (e) =>{
+        fetch("http://localhost:3000/api/v1/families", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                family_name: e.target.value
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
+
     return(
     <div>
         <h2>Signup</h2>
@@ -88,17 +111,18 @@ const Signup = (props) => {
                 <option value="Select">Select</option>
                 <option value="Child">Child</option>
                 <option value="Parent">Parent</option>
-            </Form.Field>
+            </Form.Field >
             {visible && <div className="family-form" >
                 <label>Family Name</label>
                 <br/>
-                <input name="family_name" type="text"/>
+                <input onChange={(e) => handleNewFamily(e)} name="family_name" type="text"/>
             </div> }<br/>
             {/* <label>Starting Points</label>
             <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
             <label>FamilyId</label>
             <Form.Field onChange={(e) => handleFamily_idChange(e)} name="family_id" type="text" control='select' >
                 <option value="select">Select</option>
+                {showFamilyOptions()}
             </Form.Field>
             <br/>
             <Button type="submit">Submit</Button>

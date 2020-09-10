@@ -17,6 +17,7 @@ const Login = (props) => {
     const history = useHistory();
     
     const fetchTheFamilies = () => {
+        debugger
         fetch("http://localhost:3000/api/v1/families")
         .then(res => res.json())
         .then(data => {
@@ -84,7 +85,7 @@ const Login = (props) => {
                     </Form.Field>
                         <Button className="login-button" type="submit">Submit</Button>
                 </Form>
-                <p>Don't have a account?<Link to="/Signup">Signup Now</Link></p>
+                <p>Don't have a account?<Link to="/Signup" onClick={() => fetchTheFamilies()}>Signup Now</Link></p>
             </Segment>
 
             <Switch>

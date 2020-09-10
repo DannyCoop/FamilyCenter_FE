@@ -21,6 +21,8 @@ const Calendar = (props) => {
                 select={(selectInfo) => handleDateSelect(selectInfo, currentUser)}
                 eventClick={handleEventClick}
                 events ={events}
+                contentHeight="auto"
+                expandRows="true"
             />
         </div>
     )
