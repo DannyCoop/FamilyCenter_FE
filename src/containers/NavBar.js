@@ -4,8 +4,9 @@ import { useSelector, useDispatch, connect} from 'react-redux'
 import {Route, Link} from 'react-router-dom'
 import Home from './Home'
 import {useHistory} from 'react-router-dom'
-import { Button, Modal, Segment } from 'semantic-ui-react'
+import { Button, Modal, Segment, Menu } from 'semantic-ui-react'
 import {fetchUsers} from '../Actions/fetchUser'
+import '../CSS_Folder/navBar.css'
 
 
 const NavBar = (props) => {
@@ -14,6 +15,13 @@ const NavBar = (props) => {
 
     const history = useHistory();
     const [tradeNotification, setTradeNotification] = useState(false)
+    const [activeItem, setActiveItem] = useState('Home')
+
+    const handleItemClick = (e,url) => {
+        // debugger
+        setActiveItem(e.target.textContent)
+        history.push(`/`+ url)
+    }
 
     const currentUser = useSelector(state => state.users.currentUser)
     // debugger
@@ -59,6 +67,11 @@ const NavBar = (props) => {
         setTradeNotification(false)
         props.dispatch(fetchUsers())
     }
+    const handleReject = (pending_task_id) => {
+        handlePendingDelete(pending_task_id)
+        setTradeNotification(false)
+        props.dispatch(fetchUsers())
+    }
 
     const showNotifications = () => {
         if(currentUser){
@@ -72,7 +85,10 @@ const NavBar = (props) => {
                         <span>
                             Task you'll be giving up: &nbsp; {notification.requestee_task.name}
                         </span><br/><br/>
-                        <Button onClick={() => handleTrade(notification.requestee_id, notification.requester_id, notification.pending_task_id, notification.requestee_task.id, notification.requester_task.id)}>Accept?</Button>
+                        <div >
+                            <Button onClick={() => handleTrade(notification.requestee_id, notification.requester_id, notification.pending_task_id, notification.requestee_task.id, notification.requester_task.id)}>Accept?</Button>
+                            <Button onClick={() => handleReject(notification.pending_task_id)}>Decline</Button>
+                        </div>
                     </Segment>)}
                 </Fragment>
             )
@@ -87,21 +103,28 @@ const NavBar = (props) => {
     }
 
     return(
-        <Fragment>
-            <Segment>
-                {!localStorage.token ? history.push("/Login") : history.push("/Home")}
-            <Link to="/MyFamily">
-                <Button>My Family</Button>
-            </Link>
-            <Link to="/Login">
-                <Button onClick={() => localStorage.clear()}>Logout</Button>
-            </Link>
+        <Menu className="navBar" pointing secondary>
+            {/* {!localStorage.token ? history.push("/Login") : history.push("/Home")} */}
+                <Menu.Item
+                    name="Home"
+                    active={activeItem === 'Home'}
+                    onClick={(e) => handleItemClick(e, "Home")}
+
+                />
+                <Menu.Item
+                    name="My Family"
+                    active={activeItem === "My Family"}
+                    onClick={(e) => handleItemClick(e, "MyFamily")}
+                />
             <Modal
                 size="small"
                 onClose={() => setTradeNotification(false)}
                 onOpen={() => setTradeNotification(true)}
                 open={tradeNotification}
-                trigger = {<Button>Trade Request</Button>}
+                trigger = {<Menu.Item
+                    name="Trade Request"
+                
+                />}
             >
                 <Modal.Header>
                     Pending Task Trades
@@ -110,9 +133,18 @@ const NavBar = (props) => {
                     {showTradeRequest()}
                 </Modal.Content>
             </Modal>
-            </Segment>
-
-        </Fragment>
+            <Link to="/Login">
+            <Menu.Menu position='right'>
+                <Menu.Item
+                    name='Logout'
+                    onClick={() => {
+                        localStorage.clear()
+                        props.setLogin(false)
+                    }}
+                />
+            </Menu.Menu>
+            </Link>
+        </Menu>
 
     )
     

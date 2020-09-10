@@ -10,23 +10,27 @@ import family_container from './containers/family_container';
 import {fetchUsers} from './Actions/fetchUser'
 import {connect} from 'react-redux'
 import 'semantic-ui-css/semantic.min.css'
+import NavBar from './containers/NavBar';
+
+
 
 
 
 
 
 function App(props) {
+  const [logIn, setLogin] = useState(false)
   // console.log("this is it", props)
   !localStorage.getItem("token") ? console.log('null') : props.dispatch(fetchUsers())
   return (
     <Router>
       <div className="App">
-
+        {!localStorage.token ? null : <NavBar setLogin={setLogin} style={{alignSelf: "stretch"}}/>}
       <Switch>
         <Route path='/' exact component={Welcome}></Route> 
         <Route path='/Home' exact component={Home}></Route>
         <Route path='/MyFamily' exact component={family_container}></Route>
-        <Route path='/Login' exact component={Login}></Route>
+        <Route exact path='/Login' render={ () => <Login setLogin={setLogin}/>} />
         <Route path='/Signup' exact component={Signup}></Route>
       </Switch>
       </div>

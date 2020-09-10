@@ -10,7 +10,7 @@ const Task = (props) => {
     //How I get the user array
     const family = useSelector(state => state.users)
     const currentUser = useSelector(state => state.users.currentUser)
-    
+
     //modal toggles
     const [on, setOn] = useState(false);
     const [tradeModal,setTradeModal] = useState(false)
@@ -147,7 +147,7 @@ const Task = (props) => {
     const taskList = () => {
         if(localStorage.userCat.toLowerCase() !== "parent"){
             if(props.user.tasks.length > 0)
-                return props.user.tasks.map(task => <Segment>{task.name} Points: {task.points} <Button onClick={() => completeTask(task.points, task)}>Complete</Button> {tradeTask(task)}</Segment>)
+                return props.user.tasks.map(task => <Segment className="action-buttons">{task.name} Points: {task.points} <Button onClick={() => completeTask(task.points, task)}>Complete</Button> {tradeTask(task)}</Segment>)
             else{
                 return <li>You have no task.</li>
             }

@@ -7,9 +7,9 @@ import Login from './Login'
 const Welcome = () => {
     return(
         <div>
-            {!localStorage.token ? 
+            {/* {!localStorage.token ? 
             <Login /> : 
-            <Home />}
+            <Home />} */}
         </div>
     )
 }

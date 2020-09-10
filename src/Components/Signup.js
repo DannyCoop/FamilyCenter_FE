@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import { connect } from 'react-redux';
+import { Form, Button } from 'semantic-ui-react';
 
 const Signup = (props) => {
 
@@ -11,7 +12,6 @@ const Signup = (props) => {
     const [family_id, setFamily_id] = useState("");
     const [visible, setVisible] = useState(false)
     const history = useHistory();
-    let parentCheck = false;
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -74,28 +74,35 @@ const Signup = (props) => {
     return(
     <div>
         <h2>Signup</h2>
-        <form onSubmit={(e) => handleSubmit(e)}><br/>
-        <label>Name</label>
-        <input onChange={(e) => handleNameChange(e)} name="name" type="text"  /><br/>
-        <label>Password</label>
-        <input onChange={(e) => handlePasswordChange(e)} name="password" type="password" /><br/>
-        <label>Category</label>
-        <select onChange={(e) => handleCategoryChange(e)} name="category">
-            <option value="Select">Select</option>
-            <option value="Child">Child</option>
-            <option value="Parent">Parent</option>
-        </select>
-        {visible && <div className="family-form" >
-            <label>Family Name</label>
+        <Form onSubmit={(e) => handleSubmit(e)}><br/>
+            <Form.Field>
+                <label>Name</label>
+                <input onChange={(e) => handleNameChange(e)} name="name" type="text"  /><br/>
+            </Form.Field>
+            <Form.Field>
+                <label>Password</label>
+                <input onChange={(e) => handlePasswordChange(e)} name="password" type="password" /><br/>
+            </Form.Field>
+
+            <Form.Field onChange={(e) => handleCategoryChange(e)} name="category" control='select' label="Category">
+                <option value="Select">Select</option>
+                <option value="Child">Child</option>
+                <option value="Parent">Parent</option>
+            </Form.Field>
+            {visible && <div className="family-form" >
+                <label>Family Name</label>
+                <br/>
+                <input name="family_name" type="text"/>
+            </div> }<br/>
+            {/* <label>Starting Points</label>
+            <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
+            <label>FamilyId</label>
+            <Form.Field onChange={(e) => handleFamily_idChange(e)} name="family_id" type="text" control='select' >
+                <option value="select">Select</option>
+            </Form.Field>
             <br/>
-            <input name="family_name" type="text"/>
-        </div> }
-        {/* <label>Starting Points</label>
-        <input onChange={(e) => handlePointsChange(e)} name="points" type="number" /><br/> */}
-        <label>FamilyId</label>
-        <input onChange={(e) => handleFamily_idChange(e)} name="family_id" type="text"/><br/>
-        <input type="submit"/>
-        </form>
+            <Button type="submit">Submit</Button>
+        </Form>
     </div>
     )
 }

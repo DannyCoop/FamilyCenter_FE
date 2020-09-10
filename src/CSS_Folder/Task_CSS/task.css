@@ -3,4 +3,16 @@
 }
 .task button{
     text-align: center;
+    margin: 1rem;
+}
+
+div.ui.segment.action-buttons{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    text-align: center;
+}
+
+div.ui.segment.action-buttons button{
+    margin: .5rem;
 }

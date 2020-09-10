@@ -4,17 +4,15 @@ import Calendar from '../Components/Calendar'
 import NavBar from './NavBar'
 import {Route} from "react-router-dom"
 import Login from '../Components/Login';
-import { connect, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux'
 
 const Home = (props) => {
 
     return(
-        <div>
-            <NavBar /> 
-            <br></br>
-            <TaskList /> 
-            <br></br>
-            <Calendar />
+        <div className="Home-container">
+            {/* <NavBar />  */}
+            <TaskList className="taskList-container"/> 
+            <Calendar className="calendar-container"/>
         </div>
         
     )

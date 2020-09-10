@@ -1,4 +1,8 @@
 .member-profile{
-    border-style: solid;
-    border-color: green;
+    /* border-style: solid;
+    border-color: green; */
+}
+.Family-box{
+    width: 100%;
+    margin: 1rem;
 }

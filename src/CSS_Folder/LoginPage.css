@@ -1,0 +1,18 @@
+.Login-page{
+    background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%);
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    flex-flow: column nowrap;
+    padding-left: 20%;
+    padding-right: 20%;
+    align-items: center;
+}
+
+.div.ui.segment.login-page{
+    min-width: 500px;
+}
+.login-button{
+    text-align: center;
+}

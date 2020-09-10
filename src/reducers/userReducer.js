@@ -1,4 +1,4 @@
-let initialState = {users: [], currentUser: null}
+let initialState = {users: [], currentUser: null, families: []}
 
 let userReducer = (state= initialState, action) => {
     switch(action.type) {
@@ -8,6 +8,8 @@ let userReducer = (state= initialState, action) => {
             return {...state, users:[...state.users.filter(user => user.id !== action.user.id), action.user]} 
         case 'UPDATE_TRADE_TASK':
             return {...state, users:[...state.users.filter(user => user.id !== action.user.id), action.user]} 
+        case 'GET_THE_FAMILY_LIST':
+            return {...state,families: action.families}
         default:
             return state
     }
