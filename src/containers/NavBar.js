@@ -16,6 +16,7 @@ const NavBar = (props) => {
     const history = useHistory();
     const [tradeNotification, setTradeNotification] = useState(false)
     const [activeItem, setActiveItem] = useState('Home')
+    // const [isVisible, setIsVisible] = useState(false)
 
     const handleItemClick = (e,url) => {
         // debugger
@@ -60,7 +61,7 @@ const NavBar = (props) => {
         })
     }
 
-    const handleTrade = async (requestee_id, requester_id, pending_task_id, requestee_task_id, requester_task_id) => {
+    const handleTrade = (requestee_id, requester_id, pending_task_id, requestee_task_id, requester_task_id) => {
         handleRequesteeTrade(requestee_id, requester_id, pending_task_id, requestee_task_id, requester_task_id)
         handleRequesterTrade(requestee_id, requester_id, pending_task_id, requestee_task_id, requester_task_id)
         handlePendingDelete(pending_task_id)
@@ -86,7 +87,12 @@ const NavBar = (props) => {
                             Task you'll be giving up: &nbsp; {notification.requestee_task.name}
                         </span><br/><br/>
                         <div >
-                            <Button onClick={() => handleTrade(notification.requestee_id, notification.requester_id, notification.pending_task_id, notification.requestee_task.id, notification.requester_task.id)}>Accept?</Button>
+                            <Button onClick={() => handleTrade(
+                                notification.requestee_id, 
+                                notification.requester_id, 
+                                notification.pending_task_id, 
+                                notification.requestee_task.id, 
+                                notification.requester_task.id)}>Accept?</Button>
                             <Button onClick={() => handleReject(notification.pending_task_id)}>Decline</Button>
                         </div>
                     </Segment>)}
@@ -96,7 +102,6 @@ const NavBar = (props) => {
     }
 
     const showTradeRequest =  () => {
-
         return(
             showNotifications()
         )

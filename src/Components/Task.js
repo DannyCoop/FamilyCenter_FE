@@ -29,7 +29,7 @@ const Task = (props) => {
     //gets the options for the select
     const option = () => {
         //filters  it so it so the list does not contain the parents
-        const children = family.users.filter(user => user.category.toLowerCase() === "child")
+        const children = family.users.filter(user => user.category.toLowerCase() === "child" && user.name != localStorage.name)
         return children.map(user => <option value={user.id}>{user.name}</option>)
     }
 
