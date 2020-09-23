@@ -19,7 +19,7 @@ const Calendar = (props) => {
                 initialView="dayGridMonth"
                 selectable={true}
                 select={(selectInfo) => handleDateSelect(selectInfo, currentUser)}
-                eventClick={handleEventClick}
+                eventClick={(clickInfo) => handleEventClick (clickInfo, events)}
                 events ={events}
                 contentHeight="auto"
                 expandRows="true"
@@ -56,11 +56,20 @@ const handleDateSelect = (selectInfo, currentUser) => {
     }
     }
 
-  const handleEventClick = (clickInfo) => {
+const handleEventClick = (clickInfo, events) => {
     if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove()
+        handleBackendEventDelete(clickInfo, events)
+        clickInfo.event.remove()
     }
-  }
+}
+
+const handleBackendEventDelete = (clickInfo, events) => {
+    let deleteEvent = events.find(event => event.title === clickInfo.event.title)
+    // debugger
+    fetch(`http://localhost:3000/api/v1/calendar_events/${deleteEvent.id}`,{
+        method: "DELETE"
+    })
+}
 
 
 
